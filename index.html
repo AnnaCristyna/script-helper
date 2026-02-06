@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Extract H2 titles from text and generate numbered lists, Excel files, and SRT subtitles">
+  <meta name="keywords" content="extractor, titles, h2, excel, srt, subtitles, script, video">
+  <meta name="author" content="Script Helper">
+  <title>Script Helper - H2 Title Extractor</title>
+
+  <!-- External Libraries -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Toast Notifications Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <main class="container">
+    <!-- Header -->
+    <header>
+      <!-- Language Selector -->
+      <div class="language-selector">
+        <label for="languageSelect" class="sr-only">Select language</label>
+        <select id="languageSelect" class="language-select">
+          <option value="en">English</option>
+          <option value="pt">Português</option>
+        </select>
+      </div>
+
+      <h1>Script Helper <span class="subtitle" data-i18n="subtitle">H2 Title Extractor</span></h1>
+      <p class="description" data-i18n="description">Extract titles marked with <code>##</code> and generate lists, Excel, or SRT files</p>
+    </header>
+
+    <!-- Main Layout -->
+    <section class="layout">
+      <!-- Input Area -->
+      <div class="input-column">
+        <label for="inputText" class="sr-only">Input text</label>
+        <textarea
+          id="inputText"
+          class="input-text"
+          data-i18n-placeholder="inputPlaceholder"
+          placeholder="Paste your text here... Use ## to mark titles"
+          aria-label="Text input with H2 titles"
+        ></textarea>
+      </div>
+
+      <!-- Output Area -->
+      <div class="output-column">
+        <label for="outputTitles" class="sr-only">Output list</label>
+        <textarea
+          id="outputTitles"
+          class="output-text"
+          readonly
+          aria-label="Generated numbered list"
+          data-i18n-placeholder="outputPlaceholder"
+          placeholder="The numbered list will appear here..."
+        ></textarea>
+        <div class="side-buttons">
+          <button class="btn btn-copy" id="btnCopyList">
+            <span class="btn-icon">&#x2398;</span> <span data-i18n="copyList">Copy List</span>
+          </button>
+          <a
+            class="btn btn-external"
+            href="https://www.perplexity.ai/spaces/agente-de-imagens-.jovR5xcTPaSlAb1NNi6Iw"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="imageAgent"
+          >
+            Perplexity: Image Agent
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="actions">
+      <button class="btn btn-primary" id="btnGenerateList" data-i18n="generateList">Generate List</button>
+      <button class="btn btn-secondary" id="btnGenerateExcel" data-i18n="generateExcel">Generate Excel</button>
+      <button class="btn btn-tertiary" id="btnGenerateSRT" data-i18n="generateSRT">Generate SRT</button>
+    </section>
+
+    <!-- SRT Options -->
+    <section id="srtOptions" class="srt-options hidden">
+      <div class="toggle-container">
+        <span class="toggle-label" data-i18n="toggleLabel">Include topic titles in SRT (as separate entry)</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="toggleTitlesSRT" checked>
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="toggle-status" id="toggleStatus" data-i18n="yes">YES</span>
+      </div>
+    </section>
+
+    <!-- SRT Output Section -->
+    <section id="srtSection" class="srt-section hidden">
+      <h2 data-i18n="srtTitle">SRT & Timestamps</h2>
+      <div class="srt-layout">
+        <!-- Timestamps Column -->
+        <div class="srt-column">
+          <label for="outputTimestamps" data-i18n="timestampsLabel">Timestamps (for video description):</label>
+          <textarea
+            id="outputTimestamps"
+            class="output-srt"
+            readonly
+            aria-label="Generated timestamps"
+          ></textarea>
+          <button class="btn btn-copy" id="btnCopyTimestamps" data-i18n="copyTimestamps">Copy Timestamps</button>
+        </div>
+
+        <!-- SRT Column -->
+        <div class="srt-column">
+          <label for="outputSRT" data-i18n="srtLabel">Complete SRT:</label>
+          <textarea
+            id="outputSRT"
+            class="output-srt"
+            readonly
+            aria-label="Generated SRT content"
+          ></textarea>
+          <button class="btn btn-download" id="btnDownloadSRT" data-i18n="downloadSRT">Download SRT</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        <a href="https://github.com/yourusername/script-helper" target="_blank" rel="noopener">
+          View on GitHub
+        </a>
+      </p>
+    </footer>
+  </main>
+
+  <!-- Application Script -->
+  <script src="js/app.js"></script>
+</body>
+</html>
